@@ -1,0 +1,36 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet-mssql
+{
+	"name": "open-wardrobe | shared.dotnet.extentions-v2 | devcontainer",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "shared-dotnet-extentions-v2-dc",
+	"workspaceFolder": "/workspace",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": { 
+			},
+			
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-dotnettools.csharp",
+				"kreativ-software.csharpextensions",
+				"josefpihrt-vscode.roslynator",
+				"Fudge.auto-using",
+				"adrianwilczynski.namespace",
+				"jesschadwick.nuget-reverse-package-search",
+				"rangav.vscode-thunder-client",
+				"jmrog.vscode-nuget-package-manager",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+
+	"postCreateCommand": "dotnet restore",
+	"features": {
+
+	}
+}
