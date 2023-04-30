@@ -1,0 +1,46 @@
+name: publish to nuget
+
+on:
+  release:
+    types: [published]
+
+env:
+  DOTNET_VERSION: '7.*' # The .NET SDK version to use
+
+jobs:
+  publish:
+
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build -c Release --no-restore
+
+    - name: Test
+      run: dotnet test -c Release --no-build
+
+    - name: Pack nugets
+      run: dotnet pack -c Release --no-build --output .
+
+    - name: Push to NuGet
+      run: dotnet nuget push "*.nupkg" --api-key ${{secrets.nuget_api_key}} --source github
+
+    
+
+  release:
+    
