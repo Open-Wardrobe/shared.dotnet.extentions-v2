@@ -4,9 +4,6 @@ on:
   push:
   pull_request:
     branches: [ main ]
-    paths:
-    - '**.cs'
-    - '**.csproj'
 
 env:
   DOTNET_VERSION: '7.*' # The .NET SDK version to use
@@ -16,9 +13,6 @@ jobs:
 
     name: build-ubuntu-latest
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v3
