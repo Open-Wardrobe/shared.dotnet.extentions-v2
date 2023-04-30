@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>OpenWardrobe.shared.dotnet.extentions-v2</id>
+        <version>1.0.3</version>
+        <description>Class library for dotnet extentions</description>
+        <authors>OpenWardrobe</authors>
+        <repository type="git" url="https://github.com/Open-Wardrobe/shared.dotnet.extentions-v2" />
+    </metadata>
+</package>
