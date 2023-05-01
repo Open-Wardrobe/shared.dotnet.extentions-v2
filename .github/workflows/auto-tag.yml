@@ -1,0 +1,48 @@
+name: Auto Tag
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  calculate-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      previous-version: ${{ steps.version.outputs.previous-version }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+          
+      - name: Git Version
+        id: version
+        uses: codacy/git-version@2.7.1
+ 
+   display-version:
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    steps:
+      - name: Use Version
+        run: |
+          echo ${{ needs.calculate-version.outputs.version }}
+          
+      - name: Use Previous Version
+        id: version
+        run: |
+          echo ${{ needs.calculate-version.outputs.previous-version }}
+        
+      
+
+    
+    
+    
+    
+
+
+
+      
+ 
