@@ -51,7 +51,7 @@ jobs:
         
       - name: Display GitVersion variables (without prefix)
         run: |
-          echo "Major: ${{ env.major }}"
+          echo "Major-: ${{ env.major }}"
           echo "Minor: ${{ env.minor }}"
           echo "Patch: ${{ env.patch }}"
           echo "PreReleaseTag: ${{ env.preReleaseTag }}"
