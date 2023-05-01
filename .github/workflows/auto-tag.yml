@@ -53,6 +53,7 @@ jobs:
         name: Release ${{ needs.calculate-version.outputs.version }}
         commit: 'main'
         tag: ${{ needs.calculate-version.outputs.version }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
         
       
