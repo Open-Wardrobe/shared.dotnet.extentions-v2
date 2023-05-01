@@ -28,7 +28,6 @@ jobs:
 
   calculate-version:
     runs-on: ubuntu-latest
-    outputs:
 #       version: ${{ steps.version.outputs.gitversion }}
 #       previous-version: ${{ steps.version.outputs.previous-version }}
       
