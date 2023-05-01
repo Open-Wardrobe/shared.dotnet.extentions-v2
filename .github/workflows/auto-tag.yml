@@ -10,6 +10,8 @@ jobs:
 
   calculate-version:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     outputs:
       version: ${{ steps.version.outputs.version }}
       previous-version: ${{ steps.version.outputs.previous-version }}
