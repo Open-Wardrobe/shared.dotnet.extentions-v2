@@ -71,7 +71,7 @@ jobs:
           versionSpec: '0.10.x'
         
     - name: Create release with GitReleaseManager
-      uses: gittools/actions/gitreleasemanager/createv0
+      uses: gittools/actions/gitreleasemanager/create@v0
       with:
         versionSpec: '0.10.x'
         token: ${{ secrets.GITHUB_TOKEN }}
