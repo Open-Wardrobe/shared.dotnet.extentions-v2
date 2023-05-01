@@ -8,23 +8,80 @@ env:
 
 jobs:
 
+#   calculate-version:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write
+#     outputs:
+#       version: ${{ steps.version.outputs.version }}
+#       previous-version: ${{ steps.version.outputs.previous-version }}
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v3
+#         with:
+#           ref: ${{ github.head_ref }}   # checkout the correct branch name
+#           fetch-depth: 0                # fetch the whole repo history
+          
+#       - name: Git Version
+#         id: version
+#         uses: codacy/git-version@2.7.1
+
   calculate-version:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     outputs:
-      version: ${{ steps.version.outputs.version }}
-      previous-version: ${{ steps.version.outputs.previous-version }}
+#       version: ${{ steps.version.outputs.gitversion }}
+#       previous-version: ${{ steps.version.outputs.previous-version }}
+      
     steps:
+      
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.head_ref }}   # checkout the correct branch name
-          fetch-depth: 0                # fetch the whole repo history
+          fetch-depth: 0
+          
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
           
       - name: Git Version
-        id: version
-        uses: codacy/git-version@2.7.1
+        id: gitversion # id to later be referenced
+        uses: gittools/actions/gitversion/execute@v0
+        
+      - name: Display GitVersion variables (without prefix)
+        run: |
+          echo "Major: ${{ env.major }}"
+          echo "Minor: ${{ env.minor }}"
+          echo "Patch: ${{ env.patch }}"
+          echo "PreReleaseTag: ${{ env.preReleaseTag }}"
+          echo "PreReleaseTagWithDash: ${{ env.preReleaseTagWithDash }}"
+          echo "PreReleaseLabel: ${{ env.preReleaseLabel }}"
+          echo "PreReleaseNumber: ${{ env.preReleaseNumber }}"
+          echo "WeightedPreReleaseNumber: ${{ env.weightedPreReleaseNumber }}"
+          echo "BuildMetaData: ${{ env.buildMetaData }}"
+          echo "BuildMetaDataPadded: ${{ env.buildMetaDataPadded }}"
+          echo "FullBuildMetaData: ${{ env.fullBuildMetaData }}"
+          echo "MajorMinorPatch: ${{ env.majorMinorPatch }}"
+          echo "SemVer: ${{ env.semVer }}"
+          echo "LegacySemVer: ${{ env.legacySemVer }}"
+          echo "LegacySemVerPadded: ${{ env.legacySemVerPadded }}"
+          echo "AssemblySemVer: ${{ env.assemblySemVer }}"
+          echo "AssemblySemFileVer: ${{ env.assemblySemFileVer }}"
+          echo "FullSemVer: ${{ env.fullSemVer }}"
+          echo "InformationalVersion: ${{ env.informationalVersion }}"
+          echo "BranchName: ${{ env.branchName }}"
+          echo "EscapedBranchName: ${{ env.escapedBranchName }}"
+          echo "Sha: ${{ env.sha }}"
+          echo "ShortSha: ${{ env.shortSha }}"
+          echo "NuGetVersionV2: ${{ env.nuGetVersionV2 }}"
+          echo "NuGetVersion: ${{ env.nuGetVersion }}"
+          echo "NuGetPreReleaseTagV2: ${{ env.nuGetPreReleaseTagV2 }}"
+          echo "NuGetPreReleaseTag: ${{ env.nuGetPreReleaseTag }}"
+          echo "VersionSourceSha: ${{ env.versionSourceSha }}"
+          echo "CommitsSinceVersionSource: ${{ env.commitsSinceVersionSource }}"
+          echo "CommitsSinceVersionSourcePadded: ${{ env.commitsSinceVersionSourcePadded }}"
+          echo "UncommittedChanges: ${{ env.uncommittedChanges }}"
+          echo "CommitDate: ${{ env.commitDate }}"
  
   display-version:
     runs-on: ubuntu-latest
