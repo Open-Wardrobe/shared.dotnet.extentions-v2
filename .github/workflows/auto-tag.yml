@@ -53,6 +53,8 @@ jobs:
         name: Release ${{ needs.calculate-version.outputs.version }}
         commit: 'main'
         tag: ${{ needs.calculate-version.outputs.version }}
+        generateReleaseNotes: true
+        makeLatest: true
         token: ${{ secrets.RELEASE_TOKEN }}
 
         
