@@ -47,7 +47,7 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         name: Release ${{ needs.calculate-version.outputs.version }}
-        commit: ${{ needs.calculate-version.outputs.version }}
+        commit: 'main'
         tag: ${{ needs.calculate-version.outputs.version }}
 
         
