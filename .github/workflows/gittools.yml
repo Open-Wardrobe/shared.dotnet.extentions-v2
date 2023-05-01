@@ -53,6 +53,36 @@ jobs:
       - run: |
           # Output variables can also be accessed in steps, using an expression.
           echo "Creating release notes for ${{ needs.calculate-version.outputs.branchName }} branch."
+  
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    steps:
+    
+    - name: Install GitReleaseManager
+      uses: gittools/actions/gitreleasemanager/setupv0
+      with:
+        versionSpec: '0.10.x'
+        
+    - name: Create release with GitReleaseManager
+      uses: gittools/actions/gitreleasemanager/createv0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+#         repository: 'someRepository'
+        milestone: '0.1.0'
+        name: 'v0.1.0'
+        
+        
+      
+        
+    
+        
+        
+    
+    
+    
+  
     
 
 #   build-release:
