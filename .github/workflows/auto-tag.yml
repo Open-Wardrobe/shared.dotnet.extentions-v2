@@ -44,14 +44,12 @@ jobs:
     steps:
     - name: Create Release
       id: create_release
-      uses: actions/create-release@latest
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: ncipollo/release-action@v1
       with:
-        tag_name: 0.1.0
-        release_name: Release ${{ needs.calculate-version.outputs.version }}
-        draft: false
-        prerelease: false
+        name: Release ${{ needs.calculate-version.outputs.version }}
+        commit: ${{ needs.calculate-version.outputs.version }}
+        tag: ${{ needs.calculate-version.outputs.version }}
+
         
       
 
