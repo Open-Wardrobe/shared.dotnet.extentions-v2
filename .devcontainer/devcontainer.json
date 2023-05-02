@@ -24,7 +24,8 @@
 				"jesschadwick.nuget-reverse-package-search",
 				"rangav.vscode-thunder-client",
 				"jmrog.vscode-nuget-package-manager",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"GitHub.vscode-pull-request-github"
 			]
 		}
 	},
